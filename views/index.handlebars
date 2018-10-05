@@ -1,0 +1,55 @@
+
+  {{#if article}}
+        {{#each article}}
+    <div class="bigcontainer">
+        
+        <div class="content">
+            
+            <p>{{this.title}}</p>
+            
+             <img id="image" src="{{this.imagelink}}">
+            
+            
+            <a href="{{this.titlelink}}">sxdcgvhb</a>
+            
+        </div>
+        
+        <div class="comment">
+            
+            {{!-- action="/" method="POST" --}}
+            {{!-- <button data-id="{{this._id}}" class="comment" type="submit">comment</button> --}}
+            <form class="forminput" action="/" method="POST" >
+                
+                {{!-- <lable for="textinput">Comment: </lable> --}}
+                <input class="username" placeholder="name">
+                <textarea class="textinput" type="text" name="task" placeholder="comment"></textarea>
+
+                <button data-id="{{this._id}}" class="submit" type="submit">Submit</button>
+             </form>
+         
+        </div>
+        
+        
+       
+    </div>
+   {{/each}}
+        
+            
+    {{/if}} 
+<div class="output"></div>
+<script id="coomment-output" type="text/x-handlebars-template">
+  {{#each usercomment}}
+    {{usercomment}}
+  {{/each}}
+</script>
+    
+    {{#each usercomment}}
+        {{#if usercomment}}
+            
+                
+                <p>{{this.name}}</p>
+                <p>{{this.comment}}</p>
+            
+            {{/if}} 
+        {{/each}}
+    
