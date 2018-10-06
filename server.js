@@ -43,28 +43,24 @@ app.get("/scrape", function(req, res){
            
              var   titlelink= $(this).find("h2").find("a").attr("href");
             
-            console.log("result"+ result)
-            result.push({
-                title: title,
-                imagelink:imagelink,
-                titlelink: titlelink 
-            })
+            
                 
-            // if(title && imagelink && titlelink){
-            //     db.Topstories.create({
-            //         title: title,
-            //         imagelink:imagelink,
-            //         titlelink: titlelink 
-            //     },function(err,dbtopstories){
-            //         if(err){
-            //         console.log(err);
-            //         }else{
-            //         console.log(dbtopstories);
-            //     }
+            if(title && imagelink && titlelink){
+                db.Topstories.create({
+                    title: title,
+                    imagelink:imagelink,
+                    titlelink: titlelink 
+                },function(err,dbtopstories){
+                    if(err){
+                    console.log(err);
+                    }else{
+                    console.log(dbtopstories);
+                }
                 
-            //     });
-            // };
+                });
+            };
         });// res.send("scrap complete");
+        return result;
     });
 });
 
