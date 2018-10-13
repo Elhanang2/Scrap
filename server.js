@@ -37,19 +37,19 @@ app.get("/scrape", function(req, res){
             // console.log("result"+title);
             console.log("hiiii");
                        
-              var  title = $(this).find("h2").find("a").text();
+            result.title = $(this).find("h2").find("a").text();
             
-              var  imagelink = $(this).find("a").find("picture").find("img").attr("src");
+            result.imagelink = $(this).find("a").find("picture").find("img").attr("src");
            
-             var   titlelink= $(this).find("h2").find("a").attr("href");
+             result.titlelink= $(this).find("h2").find("a").attr("href");
             
             
                 
             if(title && imagelink && titlelink){
                 db.Topstories.create({
-                    title: title,
-                    imagelink:imagelink,
-                    titlelink: titlelink 
+                    title: result.title,
+                    imagelink:result.imagelink,
+                    titlelink: result.titlelink 
                 },function(err,dbtopstories){
                     if(err){
                     console.log(err);
@@ -57,10 +57,14 @@ app.get("/scrape", function(req, res){
                     console.log(dbtopstories);
                 }
                 
-                });
+             });
             };
-        });// res.send("scrap complete");
-        return result;
+            res.redirect("/topstory");
+       
+        }).catch(function(err){
+            res.json(err);
+        })
+        
     });
 });
 
@@ -68,7 +72,7 @@ app.get("/topstory", function(req, res){
     db.Topstories.find({})
     .then(function(dbtopstories){
         res.json(dbtopstories)
-        //  res.render("index",{article:dbtopstories});
+        //  res.redirect("index",{article:dbtopstories});
     }).catch(function(err){
         res.json(err);
     });

@@ -39,6 +39,7 @@ $(document).ready(function(){
     //     });
       
     $(document).on("click",".savearticle", function(event){
+        $this.remove();
         event.preventDefault();
         // $(".form").empty();
         
